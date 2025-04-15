@@ -1,0 +1,17 @@
+{
+  "name": "personal_website",
+  "version": "1.0.0",
+  "description": "Evan's personal website",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm eleventy --serve",
+    "build": "pnpm eleventy"
+  },
+  "author": "Evan Snoswell",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.3",
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "luxon": "^3.6.1"
+  }
+}

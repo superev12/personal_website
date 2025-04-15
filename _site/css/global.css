@@ -1,0 +1,40 @@
+@import "normalise.css";
+@import "sakura.css";
+
+:root {
+  --sunp: #FFFDFB;
+  --sun: #FFF7ED;
+  --sunm: #F2E6D4;
+  --skyp: #BEBEBE;
+  --sky: #8F8F8F;
+  --skym: #636363;
+  --shadep: #3E4044;
+  --shade: #303338;
+  --shadem: #24272B;
+  --red: #CA736C;
+  --orange: #BA823A;
+  --yellow:	#8D9741;
+  --green: #47A477;
+  --cyan: #00A2AF;
+  --blue: #5794D0;
+  --purple: #9481CC;
+  --magenta: #BC73A4;
+}
+
+body {
+  background: var(--sun);
+  * {
+    color: var(--shade);
+  }
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+footer {
+  * {
+    color: var(--sky);
+  }
+  p {
+    margin-bottom: 0;
+  }
+}
