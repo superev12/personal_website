@@ -1,37 +1,47 @@
 name: Deploy to GitHub Pages
+
 on:
   push:
     branches:
       - main
+  # It is good practice to run the build on PRs to ensure it works,
+  # even if you don't deploy.
   pull_request:
+
 jobs:
   deploy:
     runs-on: ubuntu-22.04
     permissions:
-      contents: write
+      contents: write # Required to push to the gh-pages branch
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
+      cancel-in-progress: true # Optional: cancels outdated builds to save minutes
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4 # Updated to v4
+
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4 # Updated to v4
         with:
           node-version: "18"
-      - name: Persist npm cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          cache: "npm" # Setup-node has built-in caching now!
+
+      # You can remove the manual "Persist npm cache" step
+      # because `actions/setup-node` handles it with the line above.
+
       - name: Persist Eleventy .cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4 # Updated to v4
         with:
           path: ./.cache
           key: ${{ runner.os }}-eleventy-fetch-cache
-      - run: npm install
+
+      - run: npm ci # 'ci' is safer than 'install' for CI environments (uses lockfile strictly)
+
       - run: npm run build-ghpages
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
+        # explicit check to ensure we ONLY deploy on main pushes, not PRs
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
