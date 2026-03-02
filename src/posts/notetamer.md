@@ -38,5 +38,9 @@ Only 4/4 is currently supported, but in the future we'd love to make time signat
 
 The 'Quest' is a planned future mode for NoteTamer that would teach reading score notation from absolute beginner level.
 
+> What's your privacy policy?
+
+You can see our privacy policy [here](/posts/notetamer_privacy_policy).
+
 ### Contact me
 If you find any bugs, have any feature requests, or have any other questions relating to NoteTamer, please send me an email at [evan.snoswell@gmail.com](mailto:evan.snoswell@gmail.com)
